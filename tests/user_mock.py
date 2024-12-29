@@ -1,9 +1,10 @@
-from pydantic import BaseModel
+from typing import TypedDict
 
-class UserMock(BaseModel):
+class UserMock(TypedDict):
     id: int
     username: str
     email: str
+    hashed_password: str
     is_active: bool
 
 mock_users = [
@@ -26,12 +27,13 @@ class UserServiceMock:
         return mock_users
     
     @staticmethod
-    def create_user(username: str, email: str, is_active: bool = True):
+    def create_user(username: str, email: str, hashed_password: str, is_active: bool = True):
         new_user = {
             "id": len(mock_users) + 1,
             "username": username,
             "email": email,
-            "is_active": is_active
+            "hashed_password": hashed_password,
+            "is_active": is_active  #TODO: add functionality to activate user after changing the password with first login
         }
         mock_users.append(new_user)
         return new_user
