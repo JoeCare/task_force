@@ -8,8 +8,12 @@ class UserCreate(BaseModel):
     password: str
 
 class UserResponse(BaseModel):
-    "Serializer of the client response excluding sensitive data. "
+    """Serializer of the client response excluding sensitive data. """
     email: EmailStr
     username: str
 
+class UserLogin(BaseModel):
+    """Serializer of login credentials."""
+    email: EmailStr
+    password: str
 
